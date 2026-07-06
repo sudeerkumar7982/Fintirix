@@ -1,0 +1,54 @@
+# ===========================
+# Backend (Spring Boot / Maven)
+# ===========================
+backend/target/
+backend/bin/
+backend/.mvn/
+*.class
+*.jar
+*.war
+*.ear
+*.log
+*.tmp
+*.iml
+*.ipr
+*.iws
+.idea/
+.classpath
+.project
+.settings/
+
+# ===========================
+# Frontend (React / Vite / Node)
+# ===========================
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/.env.local
+frontend/.env.*.local
+
+# ===========================
+# Environment & Secrets
+# ===========================
+.env
+*.env
+
+# ===========================
+# OS / Editor
+# ===========================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===========================
+# Maven local
+# ===========================
+apache-maven-3.9.6/
+
+# ===========================
+# Misc
+# ===========================
+data/
+public/
+package-lock.json
+*.zip

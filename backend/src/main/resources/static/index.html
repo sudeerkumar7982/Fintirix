@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fintrix - Grow Your Wealth</title>
+  <meta name="description" content="Fintrix - India's modern stock investing platform. Trade NSE stocks in real-time with a ₹5,00,000 virtual portfolio.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- ======================== LANDING PAGE ======================== -->
+  <div id="landing-page" class="landing-page">
+
+    <!-- TOP NAVBAR -->
+    <header class="g-navbar">
+      <div class="g-navbar-inner">
+        <div class="g-brand">
+          <div class="g-logo">
+            <div class="g-logo-blue"></div>
+            <div class="g-logo-green"></div>
+          </div>
+          <span class="g-brand-name">fintrix</span>
+        </div>
+
+        <nav class="g-nav-links">
+          <a href="#" class="g-nav-item">Stocks</a>
+          <a href="#" class="g-nav-item">F&O</a>
+          <a href="#" class="g-nav-item">Mutual Funds</a>
+          <a href="#" class="g-nav-item">More</a>
+        </nav>
+
+        <div class="g-nav-right">
+          <div class="g-search-bar" id="landing-search-bar">
+            <i data-lucide="search" class="g-search-icon"></i>
+            <span class="g-search-placeholder">Search Fintrix...</span>
+            <kbd class="g-search-kbd">Ctrl+K</kbd>
+          </div>
+          <button class="g-cta-btn" id="btn-landing-login">Login / Sign up</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- TICKER TAPE -->
+    <div class="g-ticker-wrap">
+      <div class="g-ticker-track" id="landing-ticker">
+        <!-- JS populated -->
+      </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="g-hero">
+      <div class="g-hero-text">
+        <h1 class="g-hero-headline">Grow your wealth<br>with <span class="g-hero-accent">fintrix</span></h1>
+        <p class="g-hero-sub">India's smartest virtual stock trading platform.<br>Real NSE prices. Real-time data. Zero risk.</p>
+        <button class="g-hero-btn" id="btn-hero-start">Get started</button>
+      </div>
+      <div class="g-hero-illustration">
+        <img src="img/hero_city.png" alt="Financial city illustration" class="g-hero-img">
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ======================== AUTH OVERLAYS ======================== -->
+
+  <!-- Email/Password Overlay -->
+  <div id="google-overlay" class="g-auth-overlay hidden">
+    <div class="g-auth-card">
+      <div class="g-auth-logo">
+        <div class="g-logo">
+          <div class="g-logo-blue"></div>
+          <div class="g-logo-green"></div>
+        </div>
+        <span class="g-brand-name" style="font-size:22px;">fintrix</span>
+      </div>
+      <h2 class="g-auth-title">Welcome to fintrix</h2>
+      <p class="g-auth-sub">Sign in or create your free account</p>
+
+      <div class="g-auth-tabs">
+        <button class="g-auth-tab active" id="tab-login">Login</button>
+        <button class="g-auth-tab" id="tab-register">Sign Up</button>
+      </div>
+
+      <div id="login-form" class="g-auth-form">
+        <input type="email" id="login-email" class="g-input" placeholder="Email address" />
+        <input type="password" id="login-password" class="g-input" placeholder="Password" />
+        <div class="g-auth-error hidden" id="login-error">Incorrect email or password</div>
+        <button id="btn-email-login" class="g-submit-btn">Login</button>
+      </div>
+
+      <div id="register-form" class="g-auth-form hidden">
+        <input type="text" id="reg-name" class="g-input" placeholder="Full Name" />
+        <input type="email" id="reg-email" class="g-input" placeholder="Email Address" />
+        <input type="tel" id="reg-phone" class="g-input" placeholder="Phone Number" />
+        <input type="date" id="reg-dob" class="g-input" placeholder="Date of Birth" />
+        <input type="text" id="reg-pan" class="g-input" placeholder="PAN Number (e.g. ABCDE1234F)" maxlength="10" style="text-transform:uppercase;" />
+        <input type="text" id="reg-address" class="g-input" placeholder="Address (optional)" />
+        <input type="password" id="reg-password" class="g-input" placeholder="Create Password" />
+        <div class="g-auth-error hidden" id="reg-error">Registration failed</div>
+        <button id="btn-email-register" class="g-submit-btn">Create Account</button>
+      </div>
+
+      <button class="g-auth-back" id="btn-auth-back">← Back to home</button>
+    </div>
+  </div>
+
+  <!-- PIN Overlay -->
+  <div id="login-overlay" class="g-pin-overlay hidden">
+    <div class="g-pin-card">
+      <div class="g-auth-logo" style="margin-bottom:8px;">
+        <div class="g-logo"><div class="g-logo-blue"></div><div class="g-logo-green"></div></div>
+        <span class="g-brand-name" style="font-size:20px;">fintrix</span>
+      </div>
+      <div id="login-prompt" class="g-pin-prompt">Enter your PIN</div>
+      <div id="pin-dots-container" class="g-pin-dots">
+        <div class="g-pin-dot"></div>
+        <div class="g-pin-dot"></div>
+        <div class="g-pin-dot"></div>
+        <div class="g-pin-dot"></div>
+      </div>
+      <div id="pin-error-text" class="g-pin-error">Incorrect PIN</div>
+      <!-- PIN numpad -->
+      <div class="g-numpad">
+        <button class="g-num-btn" data-val="1">1</button>
+        <button class="g-num-btn" data-val="2">2</button>
+        <button class="g-num-btn" data-val="3">3</button>
+        <button class="g-num-btn" data-val="4">4</button>
+        <button class="g-num-btn" data-val="5">5</button>
+        <button class="g-num-btn" data-val="6">6</button>
+        <button class="g-num-btn" data-val="7">7</button>
+        <button class="g-num-btn" data-val="8">8</button>
+        <button class="g-num-btn" data-val="9">9</button>
+        <div></div>
+        <button class="g-num-btn" data-val="0">0</button>
+        <button class="g-num-btn g-num-del" id="pin-backspace">⌫</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================== MAIN APP ======================== -->
+  <div id="app-viewport" class="app-viewport hidden">
+
+    <!-- APP NAVBAR - ROW 1 -->
+    <header class="g-app-navbar">
+      <div class="g-navbar-row1">
+        <div class="g-navbar-inner">
+          <div class="g-brand" id="btn-brand-home" style="cursor:pointer;">
+            <div class="g-logo">
+              <div class="g-logo-blue"></div>
+              <div class="g-logo-green"></div>
+            </div>
+            <span class="g-brand-name">fintrix</span>
+          </div>
+
+          <nav class="g-nav-links g-app-nav-links">
+            <a href="#" class="g-nav-item" id="btn-topnav-stocks">Stocks</a>
+            <a href="#" class="g-nav-item" id="btn-topnav-fo">F&amp;O</a>
+            <a href="#" class="g-nav-item" id="btn-topnav-mf">Mutual Funds</a>
+          </nav>
+
+          <div class="g-app-actions">
+            <!-- Search -->
+            <div class="g-app-search-wrap">
+              <div class="g-app-search-box">
+                <i data-lucide="search" class="g-search-icon-sm"></i>
+                <input type="text" id="search-input" placeholder="Search stocks..." autocomplete="off">
+                <kbd class="g-search-kbd">Ctrl+K</kbd>
+                <button id="clear-search" class="g-clear-btn" style="display:none;"><i data-lucide="x"></i></button>
+              </div>
+              <div class="search-results-popup" id="search-results-dropdown" style="display:none;"></div>
+            </div>
+
+            <!-- Wallet -->
+            <div class="g-wallet-chip" id="btn-wallet-chip" style="cursor:pointer;" title="Add funds">
+              <i data-lucide="wallet-2" class="g-wallet-icon"></i>
+              <span id="header-cash-balance">₹5,00,000</span>
+            </div>
+
+            <!-- Bell -->
+            <div class="g-icon-btn" title="Notifications">
+              <i data-lucide="bell"></i>
+            </div>
+
+            <!-- Profile -->
+            <div class="g-profile-wrap">
+              <div class="g-avatar" id="btn-profile-toggle">
+                <span id="profile-initial">U</span>
+              </div>
+              <div class="g-profile-dropdown hidden" id="profile-dropdown">
+                <div class="g-profile-info">
+                  <div class="g-profile-name" id="dropdown-name">User</div>
+                  <div class="g-profile-email" id="dropdown-email">user@email.com</div>
+                  <div class="g-profile-phone" id="dropdown-phone"></div>
+                </div>
+                <div class="g-dropdown-divider"></div>
+                <button class="g-dropdown-item" id="btn-my-profile">
+                  <i data-lucide="user"></i> My Profile
+                </button>
+                <button class="g-dropdown-item" id="btn-settings">
+                  <i data-lucide="settings"></i> Settings
+                </button>
+                <div class="g-dropdown-divider"></div>
+                <button class="g-dropdown-item g-item-danger" id="btn-logout">
+                  <i data-lucide="log-out"></i> Sign Out
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- APP NAVBAR - ROW 2 -->
+      <div class="g-navbar-row2">
+        <div class="g-navbar-inner">
+          <nav class="g-app-nav">
+            <button class="g-app-tab active" data-view="dashboard" id="btn-nav-dashboard">Explore</button>
+            <button class="g-app-tab" data-view="holdings" id="btn-nav-holdings">Holdings</button>
+            <button class="g-app-tab" data-view="portfolio" id="btn-nav-portfolio">Orders</button>
+            <button class="g-app-tab" data-view="watchlist" id="btn-nav-watchlist">Watchlist</button>
+            <button class="g-app-tab" data-view="mf" id="btn-nav-mf">Mutual Funds</button>
+          </nav>
+        </div>
+      </div>
+
+      <!-- Indices Ticker Bar -->
+      <div class="g-indices-ticker-bar">
+        <div class="g-indices-strip" id="indices-strip">
+          <div class="g-index-chip-bar">
+            <span class="g-idx-name">NIFTY</span>
+            <span class="g-idx-price" id="index-tech-price">24,198.85</span>
+            <span class="g-idx-change" id="index-tech-change">+0.00%</span>
+          </div>
+          <div class="g-index-chip-bar">
+            <span class="g-idx-name">SENSEX</span>
+            <span class="g-idx-price" id="index-comp-price">79,486.32</span>
+            <span class="g-idx-change" id="index-comp-change">+0.00%</span>
+          </div>
+          <div class="g-index-chip-bar">
+            <span class="g-idx-name">BANKNIFTY</span>
+            <span class="g-idx-price" id="index-bank-price">52,414.50</span>
+            <span class="g-idx-change" id="index-bank-change">+0.00%</span>
+          </div>
+          <div class="g-index-chip-bar">
+            <span class="g-idx-name">MIDCPNIFTY</span>
+            <span class="g-idx-price" id="index-mid-price">12,680.20</span>
+            <span class="g-idx-change" id="index-mid-change">+0.00%</span>
+          </div>
+          <div class="g-index-chip-bar">
+            <span class="g-idx-name">FINNIFTY</span>
+            <span class="g-idx-price" id="index-fin-price">24,305.15</span>
+            <span class="g-idx-change" id="index-fin-change">+0.00%</span>
+          </div>
+          <div class="g-live-badge">
+            <span class="g-pulse" id="market-status-dot"></span>
+            <span id="market-status-text">Live Markets</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- App Ticker -->
+      <div class="g-ticker-wrap g-app-ticker">
+        <div class="g-ticker-track" id="app-ticker"></div>
+      </div>
+    </header>
+
+    <!-- ===== VIEW: EXPLORE (Dashboard) ===== -->
+    <section class="g-view active-view" id="view-dashboard">
+      <div class="g-explore-grid">
+        <!-- Left Panel -->
+        <div class="g-explore-left">
+          <!-- Most Traded Stocks -->
+          <div class="g-section-header">
+            <h2 class="g-section-title">Most traded stocks on Fintrix</h2>
+          </div>
+          <div class="g-stocks-grid" id="dashboard-stock-grid"></div>
+
+          <!-- Top Movers Today -->
+          <div class="g-card g-lists-card">
+            <div class="g-list-tabs">
+              <button class="g-list-tab active" id="btn-tab-gainers">Gainers</button>
+              <button class="g-list-tab" id="btn-tab-losers">Losers</button>
+              <button class="g-list-tab" id="btn-tab-volume">Volume</button>
+            </div>
+            <div class="g-movers-table-wrap">
+              <table class="g-table g-movers-table">
+                <thead>
+                  <tr>
+                    <th>Company</th>
+                    <th class="text-right">Price</th>
+                    <th class="text-right">Change</th>
+                  </tr>
+                </thead>
+                <tbody id="market-list-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Panel -->
+        <div class="g-explore-right">
+          <!-- Your Investments Summary -->
+          <div class="g-card g-investments-card">
+            <h3 class="g-invest-title">Your investments</h3>
+            <div class="g-invest-row g-invest-main">
+              <span class="g-invest-label">Current value</span>
+              <span class="g-invest-value" id="invest-current-value">₹0.00</span>
+            </div>
+            <div class="g-invest-divider"></div>
+            <div class="g-invest-row">
+              <span class="g-invest-label">1D returns</span>
+              <span class="g-invest-value g-invest-neutral" id="invest-1d-returns">₹0.00 (0.00%)</span>
+            </div>
+            <div class="g-invest-row">
+              <span class="g-invest-label">Total returns</span>
+              <span class="g-invest-value g-invest-neutral" id="invest-total-returns">₹0.00 (0.00%)</span>
+            </div>
+            <div class="g-invest-row">
+              <span class="g-invest-label">Invested</span>
+              <span class="g-invest-value" id="invest-invested">₹0.00</span>
+            </div>
+            <button class="g-add-funds-btn" id="btn-add-funds">
+              <i data-lucide="plus-circle" style="width:16px;height:16px;"></i>
+              Add Funds
+            </button>
+          </div>
+
+          <!-- My Watchlist Widget -->
+          <div class="g-card g-widget">
+            <div class="g-widget-header">
+              <h3 class="g-widget-title">My Watchlist</h3>
+              <i data-lucide="star" class="g-widget-icon"></i>
+            </div>
+            <div id="sidebar-watchlist" class="g-watchlist-list">
+              <div class="g-empty">No stocks on your watchlist</div>
+            </div>
+          </div>
+
+          <!-- Recent Transactions Widget -->
+          <div class="g-card g-widget">
+            <div class="g-widget-header">
+              <h3 class="g-widget-title">Recent Transactions</h3>
+              <i data-lucide="history" class="g-widget-icon"></i>
+            </div>
+            <div id="dashboard-transactions-list" class="g-txn-list">
+              <div class="g-empty">No transactions yet</div>
+            </div>
+          </div>
+
+          <!-- Products Card -->
+          <div class="g-card g-products-card">
+            <h3 class="g-widget-title" style="margin-bottom:12px;">Products</h3>
+            <div class="g-product-row">
+              <div class="g-product-icon" style="background:#e8faf5;color:#00d09c;">
+                <i data-lucide="trending-up" style="width:18px;height:18px;"></i>
+              </div>
+              <div>
+                <div class="g-product-name">Stocks</div>
+                <div class="g-product-desc">Trade NSE stocks in real-time</div>
+              </div>
+            </div>
+            <div class="g-product-row">
+              <div class="g-product-icon" style="background:#eff0ff;color:#5b6efa;">
+                <i data-lucide="pie-chart" style="width:18px;height:18px;"></i>
+              </div>
+              <div>
+                <div class="g-product-name">Mutual Funds</div>
+                <div class="g-product-desc">Invest in top mutual funds</div>
+              </div>
+            </div>
+            <div class="g-product-row">
+              <div class="g-product-icon" style="background:#fff8eb;color:#f59e0b;">
+                <i data-lucide="landmark" style="width:18px;height:18px;"></i>
+              </div>
+              <div>
+                <div class="g-product-name">Fixed Deposits</div>
+                <div class="g-product-desc">Earn guaranteed returns</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== VIEW: HOLDINGS ===== -->
+    <section class="g-view" id="view-holdings">
+      <div class="g-holdings-wrap">
+        <div class="g-card g-summary-banner">
+          <div class="g-summary-tile"><span class="g-tile-label">Current Value</span><span class="g-tile-val" id="holdings-current-value">₹0</span></div>
+          <div class="g-summary-tile"><span class="g-tile-label">Invested</span><span class="g-tile-val" id="holdings-invested-val">₹0</span></div>
+          <div class="g-summary-tile"><span class="g-tile-label">Total Returns</span><span class="g-tile-val g-bull" id="holdings-returns-val">₹0 (0%)</span></div>
+          <div class="g-summary-tile"><span class="g-tile-label">1D Returns</span><span class="g-tile-val g-bull" id="holdings-1d-returns">₹0 (0%)</span></div>
+        </div>
+        <div class="g-card" style="margin-top:20px;">
+          <table class="g-table g-holdings-table">
+            <thead><tr>
+              <th>Company</th><th class="text-right">Shares</th>
+              <th class="text-right">Avg Price</th><th class="text-right">LTP</th>
+              <th class="text-right">Current Value</th><th class="text-right">Returns</th><th></th>
+            </tr></thead>
+            <tbody id="holdings-table-tbody">
+              <tr><td colspan="7" class="g-empty">
+                <div class="g-empty-state">
+                  <i data-lucide="briefcase" style="width:48px;height:48px;color:#ccc;margin-bottom:12px;"></i>
+                  <div style="font-size:16px;font-weight:600;color:#44475b;margin-bottom:6px;">No holdings yet</div>
+                  <div style="font-size:13px;color:#8c8fa6;">Start investing from the Explore tab</div>
+                </div>
+              </td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== VIEW: ANALYSIS ===== -->
+    <section class="g-view" id="view-analysis">
+      <div class="g-analysis-grid">
+        <div class="g-analysis-left">
+          <div class="g-stock-banner">
+            <div class="g-banner-left">
+              <h1 class="g-stock-name" id="anal-banner-name">Reliance Industries</h1>
+            </div>
+            <div class="g-banner-right">
+              <div class="g-stock-price" id="anal-banner-price">₹2,450.00</div>
+              <div class="g-stock-change" id="anal-banner-change">+1.25 (+0.70%)</div>
+            </div>
+          </div>
+
+          <div class="g-card g-chart-card">
+            <div class="g-chart-header">
+              <span class="g-chart-label">Price Trend</span>
+              <div class="g-pills" id="chart-interval-selectors">
+                <button class="g-pill" data-interval="1D">1D</button>
+                <button class="g-pill" data-interval="1W">1W</button>
+                <button class="g-pill" data-interval="1M">1M</button>
+                <button class="g-pill g-pill-active" data-interval="1Y">1Y</button>
+              </div>
+            </div>
+            <div class="g-canvas-wrap"><canvas id="mainPriceChart"></canvas></div>
+          </div>
+
+          <div class="g-card g-perf-card">
+            <h3 class="g-card-title">Performance</h3>
+            <div class="g-perf-row">
+              <span class="g-perf-label">Today's Low</span>
+              <span class="g-perf-val" id="perf-today-low">₹0</span>
+              <div class="g-slider-bar"><div class="g-slider-ptr" id="perf-today-pointer" style="left:50%"></div></div>
+              <span class="g-perf-val" id="perf-today-high">₹0</span>
+              <span class="g-perf-label">Today's High</span>
+            </div>
+            <div class="g-perf-row">
+              <span class="g-perf-label">52W Low</span>
+              <span class="g-perf-val" id="perf-52w-low">₹0</span>
+              <div class="g-slider-bar"><div class="g-slider-ptr" id="perf-52w-pointer" style="left:50%"></div></div>
+              <span class="g-perf-val" id="perf-52w-high">₹0</span>
+              <span class="g-perf-label">52W High</span>
+            </div>
+          </div>
+
+          <div class="g-two-col">
+            <div class="g-card g-depth-card">
+              <h3 class="g-card-title">Market Depth</h3>
+              <div class="g-depth-grid">
+                <div>
+                  <h4 class="g-depth-head g-bull">Buy Bids</h4>
+                  <table class="g-table"><thead><tr><th>Bid Price</th><th class="text-right">Qty</th></tr></thead>
+                  <tbody id="depth-buy-tbody"></tbody></table>
+                </div>
+                <div>
+                  <h4 class="g-depth-head g-bear">Sell Offers</h4>
+                  <table class="g-table"><thead><tr><th>Ask Price</th><th class="text-right">Qty</th></tr></thead>
+                  <tbody id="depth-sell-tbody"></tbody></table>
+                </div>
+              </div>
+            </div>
+
+            <div class="g-card g-metrics-card">
+              <h3 class="g-card-title">Key Metrics</h3>
+              <div class="g-metrics-grid">
+                <div class="g-metric"><span class="g-metric-label">Open</span><span class="g-metric-val" id="metric-open">₹0</span></div>
+                <div class="g-metric"><span class="g-metric-label">Volume</span><span class="g-metric-val" id="metric-volume">0</span></div>
+                <div class="g-metric"><span class="g-metric-label">Mkt Cap</span><span class="g-metric-val" id="metric-mcap">₹0B</span></div>
+                <div class="g-metric"><span class="g-metric-label">P/E Ratio</span><span class="g-metric-val" id="metric-pe">0</span></div>
+                <div class="g-metric"><span class="g-metric-label">Div Yield</span><span class="g-metric-val" id="metric-yield">0%</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="g-card g-signals-card">
+            <h3 class="g-card-title">Technical Signals</h3>
+            <div class="g-signals-inner">
+              <div class="g-rating-circle" id="anal-rating-score">50</div>
+              <div class="g-rating-meta">
+                <div class="g-rating-verdict" id="anal-rating-signal">Hold</div>
+                <p class="g-rating-desc" id="anal-rating-description">Mixed signals — consolidation phase.</p>
+              </div>
+            </div>
+            <div class="g-signal-list">
+              <div class="g-signal-row"><span>RSI (14)</span><span class="g-signal-badge" id="ind-rsi">50.00</span></div>
+              <div class="g-signal-row"><span>MACD (12,26)</span><span class="g-signal-badge" id="ind-macd">0.0000</span></div>
+              <div class="g-signal-row"><span>Signal (9)</span><span class="g-signal-badge" id="ind-macd-signal">0.0000</span></div>
+              <div class="g-signal-row"><span>20-Day SMA</span><span class="g-signal-badge" id="ind-sma20">₹0</span></div>
+              <div class="g-signal-row"><span>50-Day SMA</span><span class="g-signal-badge" id="ind-sma50">₹0</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Order Card -->
+        <div class="g-analysis-right">
+          <div class="g-card g-order-card">
+            <div class="g-order-tabs">
+              <button class="g-order-tab g-order-buy-tab active" id="trade-tab-buy">BUY</button>
+              <button class="g-order-tab g-order-sell-tab" id="trade-tab-sell">SELL</button>
+            </div>
+            <div class="g-order-type-row">
+              <span class="g-order-type-active">Delivery</span>
+              <span class="g-order-type-inactive">Intraday</span>
+            </div>
+            <div class="g-order-body">
+              <div class="g-order-row">
+                <label>Qty <span class="g-order-sub">(NSE)</span></label>
+                <input type="number" id="trade-shares-input" value="1" min="1" class="g-qty-input">
+              </div>
+              <div class="g-order-row">
+                <label>Price <span class="g-order-sub">(Market)</span></label>
+                <input type="text" value="Market" readonly disabled class="g-qty-input g-qty-disabled">
+              </div>
+              <div class="g-order-calcs">
+                <div class="g-calc-row" id="trade-shares-owned-row">
+                  <span>Shares Owned</span><span id="trade-shares-owned">0</span>
+                </div>
+                <div class="g-calc-row">
+                  <span>Estimated Cost</span><span class="g-calc-total" id="trade-est-total">₹0.00</span>
+                </div>
+              </div>
+              <div class="g-balance-ref">Balance: <strong id="trade-avail-cash">₹5,00,000</strong></div>
+              <button class="g-execute-btn g-buy-btn" id="btn-execute-trade">BUY</button>
+              <button class="g-watchlist-link" id="btn-toggle-watchlist">
+                <i data-lucide="plus" id="icon-watchlist-btn"></i>
+                <span id="text-watchlist-btn">Add to Watchlist</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== VIEW: MUTUAL FUNDS (Dashboard) ===== -->
+    <section class="g-view" id="view-mf">
+      <!-- MF Inner Tabs -->
+      <div class="mf-inner-tabs-bar">
+        <div class="mf-inner-tabs">
+          <button class="mf-inner-tab active" id="mf-tab-explore">Explore</button>
+          <button class="mf-inner-tab" id="mf-tab-dashboard">Dashboard</button>
+          <button class="mf-inner-tab" id="mf-tab-sips">SIPs</button>
+          <button class="mf-inner-tab" id="mf-tab-watchlist">Watchlist</button>
+        </div>
+        <button class="mf-cart-btn"><i data-lucide="shopping-cart" style="width:15px;height:15px;"></i> Cart</button>
+      </div>
+
+      <!-- MF Explore Layout -->
+      <div class="mf-explore-layout" id="mf-panel-explore">
+        <!-- LEFT COLUMN -->
+        <div class="mf-explore-left">
+
+          <!-- Popular Funds -->
+          <div class="mf-section">
+            <div class="mf-section-header">
+              <h2 class="mf-section-title">Popular Funds</h2>
+            </div>
+            <div class="mf-popular-grid" id="mf-popular-grid">
+              <!-- JS populated -->
+            </div>
+            <a href="#" class="mf-view-all" id="mf-view-all-link">All Mutual Funds <i data-lucide="chevron-right" style="width:14px;height:14px;"></i></a>
+          </div>
+
+          <!-- Collections -->
+          <div class="mf-section">
+            <h2 class="mf-section-title">Collections</h2>
+            <div class="mf-collections-grid">
+              <div class="mf-collection-chip" data-filter="High Return">
+                <div class="mf-chip-icon mf-chip-gold">📈</div>
+                <span>High return</span>
+              </div>
+              <div class="mf-collection-chip" data-filter="Best SIP">
+                <div class="mf-chip-icon mf-chip-blue">💰</div>
+                <span>Best SIP funds</span>
+              </div>
+              <div class="mf-collection-chip" data-filter="Gold">
+                <div class="mf-chip-icon mf-chip-yellow">🪙</div>
+                <span>Gold &amp; Silver</span>
+              </div>
+              <div class="mf-collection-chip" data-filter="Large Cap">
+                <div class="mf-chip-icon mf-chip-dark">🏛️</div>
+                <span>Large Cap</span>
+              </div>
+              <div class="mf-collection-chip" data-filter="Mid Cap">
+                <div class="mf-chip-icon mf-chip-purple">📊</div>
+                <span>Mid Cap</span>
+              </div>
+              <div class="mf-collection-chip" data-filter="Small Cap">
+                <div class="mf-chip-icon mf-chip-green">🌱</div>
+                <span>Small Cap</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- All Funds Table -->
+          <div class="mf-section">
+            <h2 class="mf-section-title">All Mutual Funds</h2>
+            <div class="mf-all-funds-table-wrap">
+              <table class="g-table g-movers-table">
+                <thead>
+                  <tr>
+                    <th>Fund Name</th>
+                    <th class="text-right">NAV</th>
+                    <th class="text-right">1Y Return</th>
+                    <th class="text-right">3Y CAGR</th>
+                    <th class="text-right">Risk</th>
+                    <th class="text-right">Min SIP</th>
+                  </tr>
+                </thead>
+                <tbody id="mf-list-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div class="mf-explore-right">
+
+          <!-- Your Investments card -->
+          <div class="mf-invest-card">
+            <h3 class="mf-invest-title">Your Investments</h3>
+            <div class="mf-invest-current-label">Current</div>
+            <div class="mf-invest-current-value" id="mf-invest-current">₹0</div>
+            <div class="mf-invest-rows">
+              <div class="mf-invest-row">
+                <span class="mf-invest-label">1D returns</span>
+                <span class="mf-invest-val mf-bear" id="mf-invest-1d">₹0 (0%)</span>
+              </div>
+              <div class="mf-invest-row">
+                <span class="mf-invest-label">Total returns</span>
+                <span class="mf-invest-val mf-bear" id="mf-invest-total">₹0 (0%)</span>
+              </div>
+              <div class="mf-invest-row">
+                <span class="mf-invest-label">Invested</span>
+                <span class="mf-invest-val" id="mf-invest-invested">₹0</span>
+              </div>
+              <div class="mf-invest-row">
+                <span class="mf-invest-label">XIRR</span>
+                <span class="mf-invest-val" id="mf-invest-xirr">0%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Products & Tools -->
+          <div class="mf-tools-card">
+            <h3 class="mf-invest-title">Products and Tools</h3>
+            <div class="mf-tool-item">
+              <div class="mf-tool-icon">📋</div>
+              <span class="mf-tool-label">NFO Live</span>
+              <span class="mf-tool-badge">7 open</span>
+            </div>
+            <div class="mf-tool-item">
+              <div class="mf-tool-icon">📥</div>
+              <span class="mf-tool-label">Import funds</span>
+            </div>
+            <div class="mf-tool-item">
+              <div class="mf-tool-icon">⚖️</div>
+              <span class="mf-tool-label">Compare funds</span>
+            </div>
+            <div class="mf-tool-item">
+              <div class="mf-tool-icon">🧮</div>
+              <span class="mf-tool-label">SIP Calculator</span>
+            </div>
+            <div class="mf-tool-item">
+              <div class="mf-tool-icon">🔍</div>
+              <span class="mf-tool-label">Mutual funds screener</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== VIEW: MUTUAL FUND ANALYSIS ===== -->
+    <section class="g-view" id="view-mf-analysis">
+      <div class="g-analysis-wrap">
+        <!-- Main details -->
+        <div class="g-analysis-left">
+          <div class="g-analysis-banner">
+            <h1 class="g-stock-title" id="mf-banner-name">Fund Name</h1>
+            <div class="g-stock-price-block">
+              <div class="g-stock-price" id="mf-banner-nav">₹0.00</div>
+              <div class="g-stock-change" id="mf-banner-change" style="color: #8c8fa6; font-size: 14px;">Current NAV</div>
+            </div>
+          </div>
+
+          <!-- Chart Controls -->
+          <div class="g-chart-controls">
+            <div class="g-pill-group">
+              <button class="g-pill" data-mfrange="1M">1M</button>
+              <button class="g-pill" data-mfrange="6M">6M</button>
+              <button class="g-pill g-pill-active" data-mfrange="1Y">1Y</button>
+              <button class="g-pill" data-mfrange="3Y">3Y</button>
+              <button class="g-pill" data-mfrange="5Y">5Y</button>
+            </div>
+          </div>
+          <div class="g-chart-container">
+            <canvas id="mfPriceChart"></canvas>
+          </div>
+          
+          <div class="g-card" style="margin-top:24px;">
+            <h3 class="g-card-title">Fund Information</h3>
+            <div class="g-metrics-grid" style="grid-template-columns: repeat(4, 1fr);">
+              <div class="g-metric"><span>AUM</span><strong id="mf-metric-aum">--</strong></div>
+              <div class="g-metric"><span>Category</span><strong id="mf-metric-category">--</strong></div>
+              <div class="g-metric"><span>Risk</span><strong id="mf-metric-risk">--</strong></div>
+              <div class="g-metric"><span>Min Investment</span><strong id="mf-metric-min">--</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Investment Card -->
+        <div class="g-analysis-right">
+          <div class="g-card g-order-card">
+            <div class="g-order-tabs">
+              <button class="g-order-tab g-order-buy-tab active" id="mf-trade-tab-buy">INVEST</button>
+              <button class="g-order-tab g-order-sell-tab" id="mf-trade-tab-sell">WITHDRAW</button>
+            </div>
+            <div class="g-order-type-row">
+              <span class="g-order-type-active">One-time</span>
+              <span class="g-order-type-inactive">SIP (Soon)</span>
+            </div>
+            <div class="g-order-body">
+              <div class="g-order-row">
+                <label>Amount (₹)</label>
+                <input type="number" id="mf-trade-amount-input" value="1000" min="100" class="g-qty-input">
+              </div>
+              <div class="g-order-calcs">
+                <div class="g-calc-row">
+                  <span>Current NAV</span><span id="mf-trade-nav">₹0.00</span>
+                </div>
+                <div class="g-calc-row" id="mf-trade-units-owned-row">
+                  <span>Units Owned</span><span id="mf-trade-units-owned">0</span>
+                </div>
+                <div class="g-calc-row">
+                  <span>Estimated Units</span><span class="g-calc-total" id="mf-trade-est-units">0</span>
+                </div>
+              </div>
+              <div class="g-balance-ref">Balance: <strong id="mf-trade-avail-cash">₹0.00</strong></div>
+              <button class="g-execute-btn g-buy-btn" id="btn-execute-mf-trade">INVEST</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== VIEW: PORTFOLIO / ORDERS ===== -->
+    <section class="g-view" id="view-portfolio">
+      <div class="g-portfolio-wrap">
+        <div class="g-card g-summary-banner">
+          <div class="g-summary-tile"><span class="g-tile-label">Invested</span><span class="g-tile-val" id="port-invested-val">₹0</span></div>
+          <div class="g-summary-tile"><span class="g-tile-label">Current Value</span><span class="g-tile-val" id="port-holdings-value">₹0</span></div>
+          <div class="g-summary-tile"><span class="g-tile-label">Total Returns</span><span class="g-tile-val g-bull" id="port-returns-val">₹0 (0%)</span></div>
+          <div class="g-summary-tile"><span class="g-tile-label">Available Cash</span><span class="g-tile-val" id="port-cash-balance">₹5,00,000</span></div>
+        </div>
+
+        <div class="g-portfolio-split">
+          <div class="g-portfolio-left">
+            <h2 class="g-section-title">Stock Holdings</h2>
+            <div class="g-card">
+              <table class="g-table g-holdings-table">
+                <thead><tr>
+                  <th>Company</th><th class="text-right">Shares</th>
+                  <th class="text-right">Avg Price</th><th class="text-right">LTP</th>
+                  <th class="text-right">Current Value</th><th class="text-right">Returns</th><th></th>
+                </tr></thead>
+                <tbody id="portfolio-holdings-tbody">
+                  <tr><td colspan="7" class="g-empty">No stock holdings.</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h2 class="g-section-title" style="margin-top:32px;">Mutual Fund Holdings</h2>
+            <div class="g-card">
+              <table class="g-table g-holdings-table">
+                <thead><tr>
+                  <th>Fund</th><th class="text-right">Units</th>
+                  <th class="text-right">Avg NAV</th><th class="text-right">Current NAV</th>
+                  <th class="text-right">Current Value</th><th class="text-right">Returns</th><th></th>
+                </tr></thead>
+                <tbody id="portfolio-mf-holdings-tbody">
+                  <tr><td colspan="7" class="g-empty">No mutual fund holdings.</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="g-card g-txn-card" style="margin-top:24px;">
+              <h3 class="g-card-title">Transaction History</h3>
+              <table class="g-table">
+                <thead><tr>
+                  <th>Tx ID</th><th>Date</th><th>Type</th>
+                  <th>Ticker</th><th class="text-right">Qty</th>
+                  <th class="text-right">Price</th><th class="text-right">Net</th>
+                </tr></thead>
+                <tbody id="portfolio-transactions-tbody">
+                  <tr><td colspan="7" class="g-empty">No transactions</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="g-portfolio-right">
+            <div class="g-card">
+              <h3 class="g-card-title">Asset Allocation</h3>
+              <div class="g-donut-wrap"><canvas id="portfolioChart"></canvas></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== VIEW: WATCHLIST ===== -->
+    <section class="g-view" id="view-watchlist">
+      <div style="padding-top:20px;">
+        <h2 class="g-section-title" style="margin-bottom:16px;">My Watchlist</h2>
+        <div class="g-card">
+          <table class="g-table">
+            <thead><tr>
+              <th>Company</th><th class="text-right">LTP</th>
+              <th class="text-right">Change</th><th class="text-right">Volume</th><th></th>
+            </tr></thead>
+            <tbody id="watchlist-table-tbody">
+              <tr><td colspan="5" class="g-empty">No stocks in your watchlist. Add some from Explore!</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== VIEW: NEWS ===== -->
+    <section class="g-view" id="view-news">
+      <h2 class="g-section-title" style="padding:24px 0 16px;">Financial News</h2>
+      <div class="g-news-grid" id="market-news-grid"></div>
+    </section>
+
+    <!-- ===== VIEW: PROFILE ===== -->
+    <section class="g-view" id="view-profile">
+      <div class="g-profile-page">
+        <h2 class="g-section-title" style="margin-bottom:24px;">My Profile</h2>
+        <div class="g-card g-profile-card-full">
+          <div class="g-profile-avatar-large">
+            <span id="profile-large-initial">U</span>
+          </div>
+          <div class="g-profile-fields">
+            <div class="g-profile-field">
+              <label>Full Name</label>
+              <input type="text" id="profile-name" class="g-input" disabled />
+            </div>
+            <div class="g-profile-field">
+              <label>Email</label>
+              <input type="email" id="profile-email" class="g-input" disabled />
+            </div>
+            <div class="g-profile-field">
+              <label>Phone</label>
+              <input type="tel" id="profile-phone-input" class="g-input" placeholder="Not set" />
+            </div>
+            <div class="g-profile-field">
+              <label>Date of Birth</label>
+              <input type="date" id="profile-dob" class="g-input" />
+            </div>
+            <div class="g-profile-field">
+              <label>PAN Number</label>
+              <input type="text" id="profile-pan" class="g-input" placeholder="Not set" maxlength="10" style="text-transform:uppercase;" />
+            </div>
+            <div class="g-profile-field">
+              <label>Address</label>
+              <input type="text" id="profile-address" class="g-input" placeholder="Not set" />
+            </div>
+            <div class="g-profile-field">
+              <label>Member Since</label>
+              <input type="text" id="profile-created" class="g-input" disabled />
+            </div>
+            <div class="g-profile-actions">
+              <button class="g-submit-btn" id="btn-save-profile">Save Changes</button>
+              <span class="g-profile-save-status" id="profile-save-status"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- end app-viewport -->
+
+  <!-- ======================== ADD FUNDS MODAL ======================== -->
+  <div id="add-funds-modal" class="g-modal-overlay hidden">
+    <div class="g-modal-card">
+      <div class="g-modal-header">
+        <h2 class="g-modal-title">Add Funds</h2>
+        <button class="g-modal-close" id="btn-close-funds-modal">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+      <div class="g-modal-body">
+        <p class="g-modal-desc">Add money to your Fintrix trading account</p>
+
+        <div class="g-modal-field">
+          <label>Amount (₹)</label>
+          <input type="number" id="funds-amount" class="g-input g-input-lg" placeholder="Enter amount" min="1" />
+        </div>
+        <div class="g-modal-quick-amounts">
+          <button class="g-quick-amt" data-amount="1000">₹1,000</button>
+          <button class="g-quick-amt" data-amount="5000">₹5,000</button>
+          <button class="g-quick-amt" data-amount="10000">₹10,000</button>
+          <button class="g-quick-amt" data-amount="25000">₹25,000</button>
+        </div>
+        <div class="g-modal-field">
+          <label>Bank Name</label>
+          <input type="text" id="funds-bank" class="g-input" placeholder="e.g. HDFC Bank, SBI, ICICI" />
+        </div>
+        <div class="g-modal-field">
+          <label>UPI Reference / Transaction ID</label>
+          <input type="text" id="funds-upi-ref" class="g-input" placeholder="e.g. UPI123456789" />
+        </div>
+
+        <div class="g-modal-error hidden" id="funds-error">Please fill all fields</div>
+        <div class="g-modal-success hidden" id="funds-success">Funds added successfully!</div>
+
+        <button class="g-submit-btn g-funds-submit" id="btn-submit-funds">
+          <i data-lucide="banknote" style="width:16px;height:16px;"></i>
+          Add Funds
+        </button>
+
+        <div class="g-modal-note">
+          <i data-lucide="shield" style="width:14px;height:14px;color:#00d09c;"></i>
+          <span>Secure bank transfer simulation. Funds credited instantly.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Fallback: guarantee auth buttons always open overlay even if module fails -->
+  <script>
+    // Catch any unhandled JS errors and show them on-screen for debugging
+    window.onerror = function(msg, src, line, col, err) {
+      console.error('FINTRIX ERROR:', msg, 'at', src, 'line', line);
+      var dbg = document.getElementById('fintrix-debug');
+      if (dbg) { dbg.textContent = 'JS Error: ' + msg + ' (line ' + line + ')'; dbg.style.display='block'; }
+    };
+    window.onunhandledrejection = function(e) {
+      console.error('FINTRIX UNHANDLED PROMISE:', e.reason);
+    };
+
+    // Ensure auth buttons always work — runs in regular script context, no module needed
+    document.addEventListener('DOMContentLoaded', function() {
+      function openOverlay() {
+        var o = document.getElementById('google-overlay');
+        if (o) o.classList.remove('hidden');
+        var lf = document.getElementById('login-form');
+        var rf = document.getElementById('register-form');
+        var tl = document.getElementById('tab-login');
+        var tr = document.getElementById('tab-register');
+        if (lf) lf.classList.remove('hidden');
+        if (rf) rf.classList.add('hidden');
+        if (tl) tl.classList.add('active');
+        if (tr) tr.classList.remove('active');
+      }
+      var b1 = document.getElementById('btn-landing-login');
+      var b2 = document.getElementById('btn-hero-start');
+      var bk = document.getElementById('btn-auth-back');
+      var tl = document.getElementById('tab-login');
+      var tr = document.getElementById('tab-register');
+      if (b1) b1.addEventListener('click', openOverlay);
+      if (b2) b2.addEventListener('click', openOverlay);
+      if (bk) bk.addEventListener('click', function() {
+        var o = document.getElementById('google-overlay');
+        if (o) o.classList.add('hidden');
+      });
+      if (tl) tl.addEventListener('click', function() {
+        var lf = document.getElementById('login-form'); var rf = document.getElementById('register-form');
+        if (lf) lf.classList.remove('hidden'); if (rf) rf.classList.add('hidden');
+        tl.classList.add('active'); if (tr) tr.classList.remove('active');
+      });
+      if (tr) tr.addEventListener('click', function() {
+        var lf = document.getElementById('login-form'); var rf = document.getElementById('register-form');
+        if (rf) rf.classList.remove('hidden'); if (lf) lf.classList.add('hidden');
+        tr.classList.add('active'); if (tl) tl.classList.remove('active');
+      });
+
+      // Login form submit — delegates to module handler once loaded
+      var btnLogin = document.getElementById('btn-email-login');
+      if (btnLogin) btnLogin.addEventListener('click', function() {
+        if (window._fintrixLogin) { window._fintrixLogin(); return; }
+        // Bare fallback if module hasn't loaded yet
+        alert('App is still loading. Please wait a moment and try again.');
+      });
+
+      // Register form submit
+      var btnReg = document.getElementById('btn-email-register');
+      if (btnReg) btnReg.addEventListener('click', function() {
+        if (window._fintrixRegister) { window._fintrixRegister(); return; }
+        alert('App is still loading. Please wait a moment and try again.');
+      });
+    });
+  </script>
+  <div id="fintrix-debug" style="display:none;position:fixed;bottom:0;left:0;right:0;background:red;color:white;padding:8px;font-size:12px;z-index:9999;"></div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
