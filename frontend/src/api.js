@@ -1,4 +1,6 @@
-const API_BASE = "";
+// In production, VITE_API_BASE_URL points to the Railway backend.
+// In local dev it is empty so the Vite proxy handles /api/* calls.
+const API_BASE = import.meta.env.VITE_API_BASE_URL || "";
 
 export async function fetchJson(endpoint, options = {}) {
   const url = `${API_BASE}${endpoint}`;
